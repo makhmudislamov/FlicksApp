@@ -1,3 +1,4 @@
 # FlicksApp
 
-will be added later
+learning terminal
+
