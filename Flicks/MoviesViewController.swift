@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -36,6 +37,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegateQueue: NSOperationQueue.mainQueue()
         )
         
+        let spin = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        spin.labelText = "Loading"
+        spin.detailsLabelText = "Please Wait"
+        
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
@@ -46,6 +52,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             self.movies = responseDictionary["results"] as! [NSDictionary]
                             self.tableView.reloadData()
                             
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                     }
                 }
         })
@@ -96,6 +103,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -107,4 +116,4 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
 
-}
+
