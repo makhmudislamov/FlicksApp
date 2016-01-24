@@ -15,6 +15,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     
+    @IBOutlet weak var errorMessageView: UIView!
     @IBOutlet weak var filmSearchBar: UISearchBar!
     
     
@@ -26,6 +27,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +37,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         
         filmSearchBar.delegate = self
+        
+        
+        
        
         
     
@@ -73,6 +80,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             
                     }
                 }
+                if error != nil {
+                    self.errorMessageView.hidden = false
+                    
+                }else{
+                
+                    self.errorMessageView.hidden = true
+                }
                 
         })
         task.resume()
@@ -80,7 +94,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
     }
     
-
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

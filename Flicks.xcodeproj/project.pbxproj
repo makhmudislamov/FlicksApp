@@ -13,6 +13,7 @@
 		54BBB7DD1C532BEA00BEEB51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54BBB7DB1C532BEA00BEEB51 /* LaunchScreen.storyboard */; };
 		54BBB7E51C5338F400BEEB51 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BBB7E41C5338F400BEEB51 /* MoviesViewController.swift */; };
 		54BBB7E81C53463F00BEEB51 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BBB7E71C53463F00BEEB51 /* MovieCell.swift */; };
+		54F056491C54A13D00C2F50F /* errortriangle.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 54F056481C54A13D00C2F50F /* errortriangle.jpeg */; };
 		F0C49E8BE4B0A6A71B6E011D /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0EF2B8FA81A3F8C87E4F1A /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		54BBB7DE1C532BEA00BEEB51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54BBB7E41C5338F400BEEB51 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		54BBB7E71C53463F00BEEB51 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		54F056481C54A13D00C2F50F /* errortriangle.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = errortriangle.jpeg; sourceTree = "<group>"; };
 		E74E6C8B77B3776147E12540 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0EF2B8FA81A3F8C87E4F1A /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 		54BBB7E61C53460E00BEEB51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				54F056481C54A13D00C2F50F /* errortriangle.jpeg */,
 				54BBB7E71C53463F00BEEB51 /* MovieCell.swift */,
 			);
 			name = Views;
@@ -170,6 +173,7 @@
 			files = (
 				54BBB7DD1C532BEA00BEEB51 /* LaunchScreen.storyboard in Resources */,
 				54BBB7DA1C532BEA00BEEB51 /* Assets.xcassets in Resources */,
+				54F056491C54A13D00C2F50F /* errortriangle.jpeg in Resources */,
 				54BBB7D81C532BEA00BEEB51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
