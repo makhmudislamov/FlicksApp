@@ -148,17 +148,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = filteredMovieData! [indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-        
-        let imageUrl = NSURL(string: baseUrl + posterPath)
-        
-        cell.posterView.setImageWithURL(imageUrl!)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
         
         
-        
+        if let posterPath = movie["poster_path"] as? String{
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+        cell.posterView.setImageWithURL(imageUrl!)
+        }
         
         
         print ("row \(indexPath.row)")
@@ -199,9 +197,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.reloadData()
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! UITableViewCell
+        
+        let indexPath = tableView.indexPathForCell(cell)
+        let movies = filteredMovieData![indexPath!.row]
+        
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        detailViewController.movie = movies
+        print ("prepare for segue call")
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
     
+    }
+
+
 
     /*
     // MARK: - Navigation
