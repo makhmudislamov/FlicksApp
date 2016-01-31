@@ -13,8 +13,6 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    
     @IBOutlet weak var errorMessageView: UIView!
     @IBOutlet weak var filmSearchBar: UISearchBar!
     
@@ -23,10 +21,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var movies: [NSDictionary]?
    var filteredMovieData: [NSDictionary]?
-    
-    
-    
-    
+    var refreshControl: UIRefreshControl!
+    var endpoint: String!
     
     
     
@@ -35,14 +31,52 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        
         filmSearchBar.delegate = self
         
         
+//        let smallImageRequest = NSURLRequest(URL: NSURL(string: "https://image.tmdb.org/t/p/w45")
+//        
+//        let largeImageRequest = NSURLRequest(URL: NSURL(string: "https://image.tmdb.org/t/p/original")
+//            
+//            self.myImageView.setImageWithURLRequest(
+//                smallImageRequest,
+//                placeholderImage: nil,
+//                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+//                    
+//                    // smallImageResponse will be nil if the smallImage is already available
+//                    // in cache (might want to do something smarter in that case).
+//                    self.myImageView.alpha = 0.0
+//                    self.myImageView.image = smallImage;
+//                    
+//                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                        
+//                        self.myImageView.alpha = 1.0
+//                        
+//                        }, completion: { (sucess) -> Void in
+//                            
+//                            // The AFNetworking ImageView Category only allows one request to be sent at a time
+//                            // per ImageView. This code must be in the completion block.
+//                            self.myImageView.setImageWithURLRequest(
+//                                largeImageRequest,
+//                                placeholderImage: smallImage,
+//                                success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+//                                    
+//                                    self.myImageView.image = largeImage;
+//                                    
+//                                },
+//                                failure: { (request, response, error) -> Void in
+//                                    // do something for the failure condition of the large image request
+//                                    // possibly setting the ImageView's image to a default image
+//                            })
+//                    })
+//                },
+//                failure: { (request, response, error) -> Void in
+//                    // do something for the failure condition
+//                    // possibly try to get the large image
+//            })
         
-       
         
-    
+        
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
@@ -50,7 +84,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
         
         
@@ -91,10 +125,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         })
         task.resume()
         
+        
+        
+        networkRequest()
+        
+        
+        
+        
         // Do any additional setup after loading the view.
     }
     
+
     
+    func networkRequest() {
+        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+        let request = NSURLRequest(URL: url!)
+        let session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate: nil,
+            delegateQueue: NSOperationQueue.mainQueue()
+        )
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -156,6 +208,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if let posterPath = movie["poster_path"] as? String{
         let imageUrl = NSURL(string: baseUrl + posterPath)
         cell.posterView.setImageWithURL(imageUrl!)
+            
+        
+            cell.selectionStyle = .None
+            
+            
+            
         }
         
         
@@ -163,6 +221,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
         
     }
+    
+    
+    
+    
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -196,6 +258,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         filteredMovieData = movies
         self.tableView.reloadData()
     }
+    
+   
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
