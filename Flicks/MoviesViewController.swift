@@ -17,10 +17,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var filmSearchBar: UISearchBar!
     
     
+    
    
     
     var movies: [NSDictionary]?
    var filteredMovieData: [NSDictionary]?
+   
     var refreshControl: UIRefreshControl!
     var endpoint: String!
     
@@ -34,48 +36,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         filmSearchBar.delegate = self
         
         
-//        let smallImageRequest = NSURLRequest(URL: NSURL(string: "https://image.tmdb.org/t/p/w45")
-//        
-//        let largeImageRequest = NSURLRequest(URL: NSURL(string: "https://image.tmdb.org/t/p/original")
-//            
-//            self.myImageView.setImageWithURLRequest(
-//                smallImageRequest,
-//                placeholderImage: nil,
-//                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
-//                    
-//                    // smallImageResponse will be nil if the smallImage is already available
-//                    // in cache (might want to do something smarter in that case).
-//                    self.myImageView.alpha = 0.0
-//                    self.myImageView.image = smallImage;
-//                    
-//                    UIView.animateWithDuration(0.3, animations: { () -> Void in
-//                        
-//                        self.myImageView.alpha = 1.0
-//                        
-//                        }, completion: { (sucess) -> Void in
-//                            
-//                            // The AFNetworking ImageView Category only allows one request to be sent at a time
-//                            // per ImageView. This code must be in the completion block.
-//                            self.myImageView.setImageWithURLRequest(
-//                                largeImageRequest,
-//                                placeholderImage: smallImage,
-//                                success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
-//                                    
-//                                    self.myImageView.image = largeImage;
-//                                    
-//                                },
-//                                failure: { (request, response, error) -> Void in
-//                                    // do something for the failure condition of the large image request
-//                                    // possibly setting the ImageView's image to a default image
-//                            })
-//                    })
-//                },
-//                failure: { (request, response, error) -> Void in
-//                    // do something for the failure condition
-//                    // possibly try to get the large image
-//            })
-        
-        
+       
         
         
         let refreshControl = UIRefreshControl()
@@ -132,10 +93,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
+        
         // Do any additional setup after loading the view.
     }
     
 
+ 
+        
+    
+        
+    
     
     func networkRequest() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
